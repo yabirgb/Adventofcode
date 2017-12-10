@@ -47,7 +47,7 @@ def read():
     return []
 
 
-print(part1([0,3,0,1,-3]))
+#print(part1([0,3,0,1,-3]))
 print(part1(read()))
-print(part2([0,3,0,1,-3]))
+#print(part2([0,3,0,1,-3]))
 print(part2(read()))
