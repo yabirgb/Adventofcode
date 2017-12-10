@@ -5,8 +5,9 @@ def part1(lst):
 
    #Create a copy
    path = list(lst)
+   lon = len(lst)
 
-   while(pos < len(lst)):
+   while(pos < lon):
        nex = path[pos]
        path[pos] += 1
        pos += nex
@@ -19,10 +20,12 @@ def part2(lst):
    step = 0
    nex = 0
 
+   lon = len(lst)
+
    #Create a copy
    path = list(lst)
 
-   while(pos < len(lst)):
+   while(pos < lon):
        nex = path[pos]
        if nex >=  3:
            path[pos] -= 1
@@ -30,7 +33,6 @@ def part2(lst):
            path[pos] += 1
            
        pos += nex
-       
        step += 1
    return step
     
@@ -43,8 +45,6 @@ def read():
         for line in f:
             lst.append(int(line.replace("\n", "")))
         return lst
-
-    return []
 
 
 #print(part1([0,3,0,1,-3]))
