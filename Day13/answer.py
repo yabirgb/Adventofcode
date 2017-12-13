@@ -5,23 +5,19 @@ with open("input.txt") as f:
         line = line.replace(":", "").replace("\n","").split(" ")
         security.append((int(line[0]), int(line[1])))
 
-def penalty():
+def penalty(delay):
     penality = 0
 
     
     for level, size in security:
-        pos = level % ((size-1)*2)
-        if pos <= size:
-            guard_pos =pos
-        else:
-            guard_pos = size-pos
-
-        if guard_pos == 0:
+        pos = (delay+level) % ((size-1)*2)
+        #We just care about the 0 position and not the rest
+        if pos == 0:
             penality += level * size
 
     return penality
 
-print(penalty())
+print(penalty(0))
 
 
 #Part 2
@@ -35,10 +31,10 @@ for level, size in security:
 
 def penaltyDelay(delay):
     for level, size in security:
-        positions = positionsD[size]
-        guard_pos = positions[(delay+level)%((size-1)*2)]
+        
+        pos = (level+delay) % ((size-1)*2)
 
-        if guard_pos == 0:
+        if pos == 0:
             return False
 
     return True
