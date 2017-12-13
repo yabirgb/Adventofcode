@@ -19,13 +19,20 @@ def penalty():
 
 print(penalty())
 
-#security = [(0,3), (1,2), (4,4), (6,4)]
 
 #Part 2
+
+#Cache the list so we don't generete repeated data each time
+positionsD = {}
+for level, size in security:
+    if size not in positionsD:
+        positions = list(range(0, size - 1)) + list(range(size-1,0, -1))
+        positionsD[size] = positions
+
 def penaltyDelay(delay):
     for level, size in security:
-        positions = list(range(0, size - 1)) + list(range(size-1,0, -1))
-        guard_pos = positions[(delay+level)%len(positions)]
+        positions = positionsD[size]
+        guard_pos = positions[(delay+level)%((size-1)*2)]
 
         if guard_pos == 0:
             return False
@@ -34,11 +41,9 @@ def penaltyDelay(delay):
 
 ok = False
 seconds = 0
-
 while not ok:
     if penaltyDelay(seconds) == True:
         print(seconds)
         ok = True
     seconds += 1
 
-#print(total)
