@@ -22,13 +22,6 @@ print(penalty(0))
 
 #Part 2
 
-#Cache the list so we don't generete repeated data each time
-positionsD = {}
-for level, size in security:
-    if size not in positionsD:
-        positions = list(range(0, size - 1)) + list(range(size-1,0, -1))
-        positionsD[size] = positions
-
 def penaltyDelay(delay):
     for level, size in security:
         
