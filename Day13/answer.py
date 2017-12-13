@@ -8,9 +8,13 @@ with open("input.txt") as f:
 def penalty():
     penality = 0
 
+    
     for level, size in security:
-        positions = list(range(0, size - 1)) + list(range(size-1,0, -1))
-        guard_pos = positions[level%len(positions)]
+        pos = level % ((size-1)*2)
+        if pos <= size:
+            guard_pos =pos
+        else:
+            guard_pos = size-pos
 
         if guard_pos == 0:
             penality += level * size
