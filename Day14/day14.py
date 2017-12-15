@@ -34,11 +34,12 @@ def KnotHash(numbers, string):
     result = ""
 
     for i in conversion:
-        result += '{:02b}'.format(i)
+        result += '{:08b}'.format(i)
 
     return result
 
 #Part1
+"""
 count = 0
 for i in range(0,128):
     stra = "amgozmfv-{}".format(i)
@@ -46,3 +47,38 @@ for i in range(0,128):
     count += a.count("1")
 
 print(count)
+"""
+#Part2
+
+matrix = []
+
+def clean(row, col):
+    if matrix[row][col] == '0':
+        return None
+
+    matrix[row][col] = '0'
+    if row > 0:
+        clean(row-1, col)
+    if row < 127:
+        clean(row+1, col)
+    if col > 0:
+        clean(row, col-1)
+    if col < 127:
+        clean(row, col+1)
+
+            
+    
+
+for i in range(0,128):
+    stra = "amgozmfv-{}".format(i)
+    a = KnotHash(range(256),stra)
+    matrix.append(list(a))
+
+counterB = 0
+for x in range(128):
+    for y in range(128):
+        if matrix[x][y] == '1':
+            clean(x, y)
+            counterB += 1
+
+print(counterB)
