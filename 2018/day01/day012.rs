@@ -8,14 +8,8 @@ fn main() {
     let mut counter = 0;
     
     for line in INPUT.lines().cycle(){
-        let sign = line.chars().next().unwrap();
-        let number = &line[1..].parse::<i32>().unwrap();
-        if sign == '+' {
-            counter += number;
-        }else{
-            counter -= number;
-        } 
-        
+        let number = line.parse::<i32>().unwrap();
+
         if !freq.contains(&counter) {
             freq.insert(counter);
         }else{
