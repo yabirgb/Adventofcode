@@ -1,12 +1,12 @@
 use std::collections::HashMap;
+//59908
 
-fn main() {   
-    const INPUT: &str = include_str!("input.txt");
-    
+#[aoc(day2, part1)]
+pub fn part1 (input: &str) -> u32 {   
     let mut doubles = 0;
     let mut triples = 0;
     
-    for line in INPUT.lines(){
+    for line in input.lines(){
         let mut frequency = HashMap::new();
         
         for letter in line.chars(){
@@ -35,5 +35,25 @@ fn main() {
         }
     }
     
-    println!("Result {}", doubles*triples);
+    return doubles*triples;
+}
+
+#[aoc(day2, part2)]
+pub fn part2 (input: &str) -> Option<String> {
+    let ids: Vec<&str> = input.split("\n").collect();
+    
+    
+    for word1 in ids.iter(){
+        for word2 in ids.iter(){
+                
+            if word2.chars().zip(word1.chars()).filter(|(a,b)| a != b).count() == 1{
+                let a:String = word1.chars().zip(word2.chars()).filter(|(x,y)| x == y).map(|(a,_)| a).collect();
+                
+                return Some(a);
+            }
+
+        } 
+    }
+    
+     return None;
 }

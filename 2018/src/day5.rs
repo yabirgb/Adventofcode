@@ -23,18 +23,33 @@ fn clean(data: String) -> String {
         })
 }
 
-fn main(){
-    
-    const INPUT: &str = include_str!("input.txt");
 
+#[aoc(day5, part1)]
+pub fn part1 (input: &str) -> usize {   
+    let data = input.lines().collect::<Vec<&str>>()[0];
+ 
+    let clean = data.trim().chars().fold(String::new(), |mut s, c| {
+        
+            if s.ends_with(invert(c)){
+                s.pop();
+            }else{
+                s.push(c);
+            }
+            
+            s
+        });
     
-    let data = INPUT.lines().collect::<Vec<&str>>()[0];
+    return clean.len();
+}
+
+#[aoc(day5, part2)]
+pub fn part2 (input: &str) -> usize {
+    let data = input.lines().collect::<Vec<&str>>()[0];
     
     let min = "abcdefghijklmnopqrstuvwxyz".chars()
                                 .map(|c| destroy_component(data,c))
                                 .map(|s| clean(s).len())
                                 .min().unwrap();
                                 
-     println!("{}", min);                  
-        
+     return min;      
 }

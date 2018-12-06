@@ -1,0 +1,8 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+authors = ["Yábir García <yabirgb@gmail.com>"]
+
+[dependencies]
+aoc-runner = "0.2.0-alpha1"
+aoc-runner-derive = "0.2.0-alpha1"
